@@ -1,12 +1,26 @@
 # serverless-offline-dynamodb
+A serverless plugin to create and manage local and offline DynamoDB.
 
-! This plugin is under development. Feel free to use it and collaborate!
+[![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
 
-## How to use:
+## Features
 
-1) Start a container of amazon/dynamodb-local:
+* Create local DynamoDB Tables without any extra configuration
+* Seed initial data easily.
 
-docker-compose.yml example:
+## Docs
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Data Seed](#data-seed)
+
+
+
+
+## Prerequisites
+
+This plugin expects a [`amazon/dynamodb-local`](https://hub.docker.com/r/amazon/dynamodb-local/) container running and [`serverless-offline`](https://github.com/dherault/serverless-offline) properly configured.
+
+Here is a `docker-compose.yml` example:
 
 ```
 version: '3'
@@ -20,12 +34,18 @@ services:
     command: '-jar DynamoDBLocal.jar -sharedDb -dbPath ./'
 ```
 
-2) Add 'serverless-offline-dynamodb' in plugins section of serverless (be sure to add ir BEFORE serverless-offline) 
+[optional] You can use `npx dynamodb-admin -H localhost` to view and access your database.
 
-3) The Plugin will create all tables
+## Installation
 
- - Tip: You can run `npx dynamodb-admin -H localhost` to check your database 
+```sh
+npm i -D serverless-offline-dynamodb
+```
 
-## How to Seed data:
+Add `serverless-offline-dynamodb` into plugins section of your serverless configuration
+(be sure to include it BEFORE serverless-offline)
+
+
+## Data Seed:
 
 To seed data, just create a folder called `seed` on project root and put a json file with exact same name of table you want to seed.
