@@ -11,8 +11,7 @@
     "build": "tsc",
     "prepublish": "npm run build"
   },
-  "keywords": [],
-  "author": "",
+  "repository": "luismiguelprs/serverless-offline-dynamodb",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.2.3",
