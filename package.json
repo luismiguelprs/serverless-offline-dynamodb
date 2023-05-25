@@ -1,0 +1,28 @@
+{
+  "name": "serverless-offline-dynamodb",
+  "version": "0.0.5",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.2.3",
+    "@types/serverless": "^3.12.11",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.338.0",
+    "@aws-sdk/util-dynamodb": "^3.338.0"
+  },
+  "peerDependencies": {
+    "serverless": "^3.31.0"
+  }
+}
