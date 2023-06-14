@@ -21,7 +21,7 @@ class OfflineDynamoDB {
 
     console.log('Initializing Offline DynamoDB Plugin...')
 
-    const { service: { custom: { offlineDynamoDB: offlineDynamoDBConfig } } } = serverless
+    const { service: { custom: { 'serverless-offline-dynamodb': offlineDynamoDBConfig } } } = serverless
 
     const { dynamoDBEndpoint } = offlineDynamoDBConfig ?? {}
 
