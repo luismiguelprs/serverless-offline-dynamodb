@@ -23,14 +23,14 @@ class OfflineDynamoDB {
 
     const { service: { custom: { 'serverless-offline-dynamodb': offlineDynamoDBConfig } } } = serverless
 
-    const { dynamoDBEndpoint } = offlineDynamoDBConfig ?? {}
+    const { endpoint } = offlineDynamoDBConfig ?? {}
 
-    if (!dynamoDBEndpoint) {
+    if (!endpoint) {
       throw new Error('Missing dynamoDBEndpoint config')
     }
 
     this.dynamoDBClient = new DynamoDBClient({
-      endpoint: dynamoDBEndpoint,
+      endpoint: endpoint,
       credentials: {
         accessKeyId: 'DEFAULT_ACCESS_KEY',
         secretAccessKey: 'DEFAULT_SECRET',
