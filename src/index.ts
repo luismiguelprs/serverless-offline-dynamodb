@@ -21,8 +21,16 @@ class OfflineDynamoDB {
 
     console.log('Initializing Offline DynamoDB Plugin...')
 
+    const { service: { custom: { offlineDynamoDB: offlineDynamoDBConfig } } } = serverless
+
+    const { dynamoDBEndpoint } = offlineDynamoDBConfig ?? {}
+
+    if (!dynamoDBEndpoint) {
+      throw new Error('Missing dynamoDBEndpoint config')
+    }
+
     this.dynamoDBClient = new DynamoDBClient({
-      endpoint: 'http://localhost:8000',
+      endpoint: dynamoDBEndpoint,
       credentials: {
         accessKeyId: 'DEFAULT_ACCESS_KEY',
         secretAccessKey: 'DEFAULT_SECRET',
