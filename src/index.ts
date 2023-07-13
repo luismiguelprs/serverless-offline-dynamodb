@@ -31,10 +31,6 @@ class OfflineDynamoDB {
 
     this.dynamoDBClient = new DynamoDBClient({
       endpoint: endpoint,
-      credentials: {
-        accessKeyId: 'DEFAULT_ACCESS_KEY',
-        secretAccessKey: 'DEFAULT_SECRET',
-      },
     })
 
     this.hooks = {
