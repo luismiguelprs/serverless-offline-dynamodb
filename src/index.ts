@@ -42,20 +42,27 @@ class OfflineDynamoDB {
     const resources = this.serverless.service.resources.Resources ?? []
     const tableTypes = ['AWS::DynamoDB::Table', 'AWS::DynamoDB::GlobalTable']
     const tables = []
+    const defaultProvisioning = {
+      ReadCapacityUnits: 5,
+      WriteCapacityUnits: 5,
+    }
     for (const key in resources) {
       const resource = resources[key]
       if (tableTypes.includes(resource.Type)) {
         if (resource.Properties.BillingMode === 'PAY_PER_REQUEST') {
           delete resource.Properties.BillingMode
-
-          const defaultProvisioning = {
-            ReadCapacityUnits: 5,
-            WriteCapacityUnits: 5,
-          }
           resource.Properties.ProvisionedThroughput = defaultProvisioning
         }
 
         delete resource.Properties.Replicas
+
+        if (resource.Properties.GlobalSecondaryIndexes) {
+          resource.Properties.GlobalSecondaryIndexes.map((index: any) => {
+            if (!index.ProvisionedThroughput) {
+              index.ProvisionedThroughput = defaultProvisioning;
+            }
+          })
+        }
 
         tables.push(resource.Properties)
       }
